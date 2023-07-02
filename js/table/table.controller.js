@@ -24,6 +24,7 @@ const tableCntr = (function(modelCntr,tableView) {
     })
 
     tableDOMELements.allStatuses.addEventListener('click',(e)=>{
+        tableView.addClassActive(e.target.dataset.value,'allStatuses')
         const currentFilter = modelCntr.changeFilterStatus('status',e.target.dataset.value);
          const filteredReq = modelCntr.filterRequests(currentFilter); 
         tableView.renderData(filteredReq);
@@ -31,6 +32,7 @@ const tableCntr = (function(modelCntr,tableView) {
     })
 
     tableDOMELements.listLeftPanel.addEventListener('click',(e)=>{
+        tableView.addClassActive(e.target.dataset.value,'listLeftPanel')
         const currentFilter = modelCntr.changeFilterStatus('status',e.target.dataset.value);
         const filteredReq = modelCntr.filterRequests(currentFilter); 
         tableView.renderData(filteredReq);

@@ -26,16 +26,16 @@ const tableView = (function() {
         "course-js": 'Курс по JavaScript'
     }
 
+    const statusClass = {
+        new: 'badge-danger',
+        inwork: 'badge-warning',
+        complete: 'badge-success'
+    }
+
+
 
     function renderData(data) {
         DOMElements.tableBody.innerHTML = "";  
-
-        const statusClass = {
-            new: 'badge-danger',
-            inwork: 'badge-warning',
-            complete: 'badge-success'
-        }
-
 
         data.forEach(function(item) {
            
@@ -64,6 +64,18 @@ const tableView = (function() {
        
     }
 
+    function addClassActive(value,name) {
+        const filteredElement = Object.keys(DOMElements).filter((i)=> i == name);
+        if(name == filteredElement) { 
+            DOMElements[name].querySelectorAll('a').forEach((item)=>{
+            item.classList.remove('active')
+        }) 
+        if(statusObj.hasOwnProperty(value)){
+            DOMElements[name].querySelector(`a[data-value=${value}`).classList.add('active');
+        }
+    } 
+    }
+
    
 
     return {
@@ -71,6 +83,7 @@ const tableView = (function() {
             return DOMElements
         },
         renderData: renderData,
+        addClassActive: addClassActive
       
     }
  
